@@ -2,6 +2,14 @@ import pandas as pd
 import yfinance as yf
 import streamlit as st
 import altair as alt
+import logging
+
+# ログの設定
+logging.basicConfig(
+    filename=r"C:\Users\池田　光\OneDrive\デスクトップ\python_test\米国株価可視化アプリ\log\app.log",
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
 
 st.title('米国株価可視化アプリ')
 
@@ -35,6 +43,7 @@ def get_data(days,tickers):
     return df
 
 try:
+    logging.info('処理開始')
     st.sidebar.write("""
     ## 株価の範囲指定
     """)
@@ -80,7 +89,9 @@ try:
         )
     )
     st.altair_chart(chart, use_container_width=True)
-except:
+    logging.info('処理正常実行')
+except Exception as e:
     st.error(
-        'あら！エラーが起きているようです。。。'
+        'エラーが起きています。'
     )
+    logging.error(f'Error: {e}')
