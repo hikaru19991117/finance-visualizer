@@ -50,7 +50,7 @@ try:
 
     ymin, ymax = st.sidebar.slider(
         '範囲を指定してください',
-        0.0, 3500.0, (0.0, 3500.0))
+        0.0, 3500.0, (0.0, 300.0))
 
     tickers = {
         'apple': 'AAPL',
